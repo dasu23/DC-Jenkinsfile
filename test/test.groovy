@@ -17,7 +17,7 @@ pipeline{
         stage("read properties") {
             steps{
                 script{
-                    properties_file = env.WORKSPACE + "/test/xxx.properties"
+                    properties_file = load env.WORKSPACE + "/test/xxx.properties"
                     model_test.read_properties(properties_file)
                     println "================================"
                 }
