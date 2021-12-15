@@ -10,14 +10,14 @@ pipeline{
         stage("init") {
             steps{
                 script{
-                    model_test = load env.WORKSPACE + "/test/module.groovy"
+                    env.model_test = load env.WORKSPACE + "/test/module.groovy"
                 }
             }
         }
         stage("read properties") {
             steps{
                 script{
-                    properties_file = load env.WORKSPACE + "/test/xxx.properties"
+                    env.properties_file = load env.WORKSPACE + "/test/xxx.properties"
                     model_test.read_properties(properties_file)
                     println "================================"
                 }
