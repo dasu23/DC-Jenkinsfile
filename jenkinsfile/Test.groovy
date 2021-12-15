@@ -1,3 +1,10 @@
+#!groovy
+
+@Library("DC-Jenkinsfile@master")
+
+def remote = new org.devops.remote()
+
+
 pipeline {
     agent any
     parameters {
@@ -9,11 +16,9 @@ pipeline {
         stage("check remote health") {
             steps {
                 script {
-                    import remote
-                    remote = new remote()
-                    println(remote.password)
                     rserver = remote.GetRemoteServer("${ip_address}")
                     sshCommand remote: rserver, command: "ifconfig"
+                    println(rserver.password)
                 }
             }
         }
