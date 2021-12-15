@@ -21,7 +21,7 @@ pipeline {
 
                     aa = remote.getShellPrama(filename)
                     println(aa)
-                    bb = remote.getSSHPrama("${ip_address}","ifconfig")
+                    bb = remote.getSSHPrama("${ip_address}",dockerps)
                     println(bb)
                 }
             }
