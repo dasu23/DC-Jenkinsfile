@@ -21,7 +21,7 @@ pipeline {
 
                     aa = remote.getShellPrama(filename)
                     println(aa)
-                    bb = remote.getSSHPrama("ifconfig")
+                    bb = remote.getSSHPrama("${ip_address}","ifconfig")
                     println(bb)
                 }
             }
