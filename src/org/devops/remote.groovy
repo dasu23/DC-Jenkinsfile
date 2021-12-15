@@ -20,10 +20,10 @@ def getShellPrama(stringshell) {
 }
 
 def getSSHPrama(ip,stringshell) {
-    rserver = GetRemoteServer(ip)
-    pwd = rserver.password
-    println(pwd)
-    sshShell = "sshpass -p "+pwd+" ssh -o StrictHostKeyChecking=no root@${ip} "+stringshell
+//    rserver = GetRemoteServer(ip)
+//    pwd = rserver.password
+//    println(pwd)
+    sshShell = "sshpass -p dangerous ssh -o StrictHostKeyChecking=no root@"+ip+stringshell
     println(sshShell)
     sshprama = sh(returnStdout: true, script: sshShell).trim()
     return sshprama
