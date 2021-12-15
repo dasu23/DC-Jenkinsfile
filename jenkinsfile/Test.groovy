@@ -19,7 +19,7 @@ pipeline {
                     filename = "for file in \$(ls -t /root | grep ${version}) ; do echo \$file ;break; done || true"
                     dockerps = "docker ps | grep dce-etcd | grep -v pause | awk '{print \$1}'"
 
-                    aa = remote.getSSHPrama(filename)
+                    aa = remote.getShellPrama(filename)
                     println(aa)
                     bb = remote.getSSHPrama(dockerps)
                     println(bb)

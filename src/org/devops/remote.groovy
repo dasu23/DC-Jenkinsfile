@@ -20,7 +20,7 @@ def getShellPrama(stringshell) {
 }
 
 def getSSHPrama(ip,stringshell) {
-    password = remote.GetRemoteServer(ip).password
+    password = GetRemoteServer(ip).password
     sshShell = "sshpass -p "+password+" ssh -o StrictHostKeyChecking=no root@${ip} "+stringshell
     sshprama = sh(returnStdout: true, script: sshShell).trim()
     return sshprama
