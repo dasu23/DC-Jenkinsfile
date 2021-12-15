@@ -13,3 +13,15 @@ def GetRemoteServer(ip) {
     }
     return remote
 }
+
+def getShellPrama(stringshell) {
+    shellprama = sh(returnStdout: true, script: stringshell).trim()
+    return shellprama
+}
+
+def getSSHPrama(ip,stringshell) {
+    password = remote.GetRemoteServer(ip).password
+    sshShell = "sshpass -p "+password+" ssh -o StrictHostKeyChecking=no root@${ip} "+stringshell
+    sshprama = sh(returnStdout: true, script: sshShell).trim()
+    return sshprama
+}

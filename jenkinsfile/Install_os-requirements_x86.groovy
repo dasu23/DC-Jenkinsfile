@@ -1,16 +1,8 @@
-def GetRemoteServer(ip) {
-    def remote = [:]
-    remote.name = ip
-    remote.host = ip
-    remote.port = 22
-    remote.pty = true
-    remote.allowAnyHosts = true
-    withCredentials([usernamePassword(credentialsId: '74b321a0-01ca-4629-ad90-e3c47c1cd354', passwordVariable: 'password', usernameVariable: 'userName')]) {
-        remote.user = "${userName}"
-        remote.password = "${password}"
-    }
-    return remote
-}
+#!groovy
+
+@Library("DC-Jenkinsfile@master")
+def remote = new org.devops.remote()
+
 
 def testconnect(ip_address) {
     env.testconnect = sh(returnStdout: true, script: 'sshpass -p dangerous ssh -o StrictHostKeyChecking=no root@${ip_address} \'echo \"测试登录\"\' || true').trim()
@@ -42,7 +34,7 @@ pipeline {
                     // 检查目标机是否正确
                     testconnect("${ip_address}")
                     // 登录节点初始化
-                    rserver = GetRemoteServer("${ip_address}")
+                    rserver = remote.GetRemoteServer("${ip_address}")
                 }
             }
         }
