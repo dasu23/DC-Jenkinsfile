@@ -1,5 +1,3 @@
-import remote
-
 pipeline {
     agent any
     parameters {
@@ -11,6 +9,7 @@ pipeline {
         stage("check remote health") {
             steps {
                 script {
+                    import remote
                     remote = new remote()
                     println(remote.password)
                     rserver = remote.GetRemoteServer("${ip_address}")
